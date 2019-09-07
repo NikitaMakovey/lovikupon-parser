@@ -33,11 +33,10 @@ $kernel = new Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-    .coupon {
-        background-color: rgba(157, 208, 255, 0.74);
-    }
-</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+    </style>
 </head>
 <body>
 <form method="post" action="content.php">
