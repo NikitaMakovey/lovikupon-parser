@@ -59,6 +59,10 @@ class CouponParser
     {
         $this->link = $link;
         $this->db_name = $db_name;
+        $connection = new \mysqli("localhost", "root", "root");
+        $connection->connect("localhost", "root", "root", $db_name);
+        $query = "TRUNCATE TABLE $db_name";
+        $connection->query($query);
     }
 
     public function getContent()

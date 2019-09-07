@@ -37,7 +37,7 @@ class Database
                 ) DEFAULT CHARSET=utf8;";
         $connection->connect("localhost", "root", "root", $database);
         if ($connection->query($query) === TRUE) {
-            //echo "Successfully created table";
+
         } else {
             echo $connection->error;
         }

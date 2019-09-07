@@ -34,6 +34,9 @@ $kernel = new Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        * {
+            font-family: "Times New Roman";
+        }
         .coupon {
             padding: 1%;
             background-color: rgba(237, 255, 246, 0.84);
@@ -53,18 +56,29 @@ $kernel = new Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
             horiz-align: right;
             margin-left: 45%;
         }
+        .sort-class > select {
+            font-size: 100%;
+            margin-bottom: 0.5%;
+        }
+        input {
+            font-size: 100%;
+            background-color: rgba(169, 232, 255, 0.67);
+            border-radius: 3px;
+            margin-bottom: 0.5%;
+        }
     </style>
 </head>
 <body>
 
     <?php
-    $db = new Database("yyy");
-    if (isset($_POST['SALE_END'])) {
+    $db_name = "mysql";
+    $db = new Database($db_name);
+    if (isset($_POST['SORT']) && $_POST['SORT'] == 1) {
         $query = "SELECT * FROM " . $db->getDatabaseName() . " ORDER BY `date_until_end` ASC";
         $connection = $db->getConnection();
         $result = $connection->query($query);
         unset($_POST['SALE_END']);
-    } elseif (isset($_POST['VALIDITY'])) {
+    } elseif (isset($_POST['SORT']) && $_POST['SORT'] == 2) {
         $query = "SELECT * FROM " . $db->getDatabaseName() . " ORDER BY `validity` ASC";
         $connection = $db->getConnection();
         $result = $connection->query($query);
@@ -75,9 +89,13 @@ $kernel = new Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
         $result = $connection->query($query);
     }
     ?>
-    <form action="" method="post">
-        <input type="submit" name="SALE_END" value="Сортировка по окончанию продаж"><br><br>
-        <input type="submit" name="VALIDITY" value="Сортировка по сроку действия"><br><br>
+    <form class="sort-class" action="" method="post">
+        <select name="SORT">
+            <option selected disabled>По умолчанию</option>
+            <option value="1">По сроку действия</option>
+            <option value="2">По окончанию продаж</option>
+        </select>
+        <input type="submit" value="Сортировать">
         <div>
             <?php while ($row = $result->fetch_array(MYSQLI_ASSOC)) { ?>
             <div class='coupon'>
@@ -101,6 +119,3 @@ $kernel = new Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
             <?php } ?>
         </div>
     </form>
-
-
-

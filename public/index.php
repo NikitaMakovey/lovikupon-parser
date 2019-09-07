@@ -33,6 +33,16 @@ $kernel = new Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
 <!DOCTYPE html>
 <html>
 <head>
+    <style>
+        input {
+            font-family: "Times New Roman";
+            height: 100px;
+            font-size: 42px;
+            width: 480px;
+            background-color: rgba(189, 245, 255, 0.82);
+            border-radius: 8px;
+        }
+    </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
 

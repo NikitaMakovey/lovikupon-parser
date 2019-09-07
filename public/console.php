@@ -29,7 +29,8 @@ $kernel = new Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
 
 //Don't hurt this :: end
 
-$parser = new CouponParser("https://vladivostok.lovikupon.ru/today/", "yyy");
+$db_name = "mysql";
+$parser = new CouponParser("https://vladivostok.lovikupon.ru/today/", $db_name);
 $parser->getContent();
 
 ?>
@@ -38,12 +39,21 @@ $parser->getContent();
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        * {
+            font-family: "Times New Roman";
+        }
+        input {
+            height: 100px;
+            font-size: 42px;
+            width: 480px;
+            background-color: rgba(189, 245, 255, 0.82);
+            border-radius: 8px;
+        }
         .count-coupons {
             margin: auto;
             align-content: center;
         }
         .count-coupons > p {
-            font-family: fantasy;
             font-size: 40px;
         }
     </style>
