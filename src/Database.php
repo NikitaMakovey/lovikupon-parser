@@ -31,8 +31,8 @@ class Database
                 id INT(6) NOT NULL PRIMARY KEY AUTO_INCREMENT,
                 title VARCHAR(300) NOT NULL,
                 link VARCHAR(200) NOT NULL,
-                validity VARCHAR(100) NOT NULL,
-                date_until_end VARCHAR(50) NOT NULL,
+                validity INT NOT NULL,
+                date_until_end INT NOT NULL,
                 image VARCHAR(200) NOT NULL
                 ) DEFAULT CHARSET=utf8;";
         $connection->connect("localhost", "root", "root", $database);

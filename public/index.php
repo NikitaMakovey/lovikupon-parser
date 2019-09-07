@@ -40,39 +40,9 @@ $kernel = new Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
 </style>
 </head>
 <body>
-
-<b>
-    <?php
-    $parser = new CouponParser("https://vladivostok.lovikupon.ru/today/", "lovikupon_db");
-    echo "Уже куплено " . $parser->getContent() . " купонов";
-    ?>
-</b>
-<br>
-<?php
-$db = new Database("lovikupon_db");
-$query = "SELECT * FROM " . $db->getDatabaseName();
-$connection = $db->getConnection();
-$result = $connection->query($query);
-while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
-    ?>
-    <div class='coupon'>
-        <div class="validity">
-            <p><?php echo $row['validity'] ?></p>
-            <p><?php echo $row['date_until_end'] ?></p>
-        </div>
-        <a href="<?php echo $row['link'] ?>">
-            <h2>
-                <?php echo $row['title'] ?>
-            </h2>
-        </a>
-        <div class="image-coupons">
-            <img src="<?php echo $row['image'] ?> " alt='Promo Image'>
-        </div>
-    </div>
-    <?php
-}
-$connection->close();
-?>
+<form method="post" action="content.php">
+    <input type="submit" name="analise" value="Проанализировать купоны">
+</form>
 
 </body>
 </html>
