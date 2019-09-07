@@ -9,6 +9,9 @@ use App\CouponParser;
 
 require dirname(__DIR__).'/config/bootstrap.php';
 
+$db_name = "simple";
+$db = new Database($db_name);
+
 // Don't hurt this :: begin
 
 if ($_SERVER['APP_DEBUG']) {
@@ -29,7 +32,6 @@ $kernel = new Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
 
 //Don't hurt this :: end
 
-$db_name = "mysql";
 $parser = new CouponParser("https://vladivostok.lovikupon.ru/today/", $db_name);
 $parser->getContent();
 

@@ -71,10 +71,10 @@ $kernel = new Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
 <body>
 
     <?php
-    $db_name = "mysql";
+    $db_name = "simple";
     $db = new Database($db_name);
     if (isset($_POST['SORT']) && $_POST['SORT'] == 1) {
-        $query = "SELECT * FROM " . $db->getDatabaseName() . " ORDER BY `date_until_end` ASC";
+        $query = "SELECT * FROM " . $db->getDatabaseName() . " ORDER BY `sale_end` ASC";
         $connection = $db->getConnection();
         $result = $connection->query($query);
         unset($_POST['SALE_END']);
@@ -103,7 +103,7 @@ $kernel = new Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
                     <p class="validity">Срок действия : <b><?php echo $row['validity'] ?> дн.</b></p>
                     <p class="sale_end">До конца продаж :
                         <b>
-                        <?php echo date("d дн. H:i:s", mktime(0, 0, $row['date_until_end'])) ?>
+                        <?php echo date("d дн. H:i:s", mktime(0, 0, $row['sale_end'])) ?>
                         </b>
                     </p>
                 </div>
@@ -113,7 +113,7 @@ $kernel = new Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
                     </h2>
                 </a>
                 <div class="image-coupons">
-                    <img src="<?php echo $row['image'] ?> " alt='Promo Image'>
+                    <img src="<?php echo $row['image_src'] ?> " alt='Promo Image'>
                 </div>
             </div>
             <?php } ?>

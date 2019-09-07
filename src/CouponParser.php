@@ -13,7 +13,6 @@ define("VALIDITY", "//div[@class='section fsize11 grey-6 tahoma']//div[@class='s
 define("TIME_TO", "//nobr");
 define("IMAGE", "//div[@class='promo-image']//a//img/@src");
 define("COUPONS_COUNT", "//div[@class='coupons-count']//strong");
-define("DATABASE", "database_1");
 const timeArray = array(
     "янв." => 0,
     "фев." => 31,
@@ -80,21 +79,19 @@ class CouponParser
                 trim(preg_replace("/\s{2,}/", " ",
                     $node->filterXPath(VALIDITY)->text()));
             preg_match_all("/[0-9]+|(янв.|фев.|март.|апр.|мая|июн.|июл.|авг.|сент.|окт.|нояб.|дек.)/", $validity, $matchess);
-            //print_r($matchess[0]);
             $validity = $matchess[0][2] + timeArray[$matchess[0][3]] - ($matchess[0][0] + timeArray[$matchess[0][1]]) + 1;
-            $date_until_end =
+            $sale_end =
                 trim(preg_replace("/\s{2,}/", " ", $node->filterXPath(TIME_TO)->text()));
-            preg_match_all("/[0-9]+/", $date_until_end, $matches);
-            $date_until_end = $matches[0][0] * 24 * 60 * 60 +
+            preg_match_all("/[0-9]+/", $sale_end, $matches);
+            $sale_end = $matches[0][0] * 24 * 60 * 60 +
                                 $matches[0][1] * 60 * 60 +
                                     $matches[0][2] * 60 +
                                         $matches[0][3];
-            //(date("d H:i:s", mktime(0, 0, $date_until_end)))
-            $image = $node->filterXPath(IMAGE)->text();
+            $image_src = $node->filterXPath(IMAGE)->text();
             $db = new Database($this->db_name);
             $query = "INSERT INTO `" . $db->getDatabaseName() . "` 
-                    (`title`, `link`, `validity`, `date_until_end`, `image`) 
-                    VALUES ('$title', '$link', '$validity', '$date_until_end', '$image')";
+                    (`title`, `link`, `validity`, `sale_end`, `image_src`) 
+                    VALUES ('$title', '$link', '$validity', '$sale_end', '$image_src')";
             $connection = $db->getConnection();
             if ($connection->query($query) === TRUE) {
                 $connection->close();

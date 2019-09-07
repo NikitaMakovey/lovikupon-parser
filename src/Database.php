@@ -32,8 +32,8 @@ class Database
                 title VARCHAR(300) NOT NULL,
                 link VARCHAR(200) NOT NULL,
                 validity INT NOT NULL,
-                date_until_end INT NOT NULL,
-                image VARCHAR(200) NOT NULL
+                sale_end INT NOT NULL,
+                image_src VARCHAR(200) NOT NULL
                 ) DEFAULT CHARSET=utf8;";
         $connection->connect("localhost", "root", "root", $database);
         if ($connection->query($query) === TRUE) {

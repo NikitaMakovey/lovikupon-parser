@@ -38,7 +38,7 @@ $kernel = new Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
             font-family: "Times New Roman";
             height: 100px;
             font-size: 42px;
-            width: 480px;
+            width: 100%;
             background-color: rgba(189, 245, 255, 0.82);
             border-radius: 8px;
         }
