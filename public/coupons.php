@@ -92,8 +92,8 @@ $kernel = new Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
     <form class="sort-class" action="" method="post">
         <select name="SORT">
             <option selected disabled>По умолчанию</option>
-            <option value="1">По сроку действия</option>
-            <option value="2">По окончанию продаж</option>
+            <option value="2">По сроку действия</option>
+            <option value="1">По окончанию продаж</option>
         </select>
         <input type="submit" value="Сортировать">
         <div>

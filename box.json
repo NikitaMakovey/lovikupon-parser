@@ -1,0 +1,8 @@
+{
+  "chmod": "0755",
+  "directories": ["src","bin","config","public","var","vendor"],
+  "files": [".env",".env.local.php","composer.json","composer.lock","symfony.lock"],
+  "main": "public/index.php",
+  "output": "lovikupon.phar",
+  "stub": true
+}
