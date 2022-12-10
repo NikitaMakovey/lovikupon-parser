@@ -9,7 +9,7 @@ use App\CouponParser;
 
 require dirname(__DIR__).'/config/bootstrap.php';
 
-$db_name = "simple";
+$db_name = "lovikupon";
 $db = new Database($db_name);
 
 // Don't hurt this :: begin

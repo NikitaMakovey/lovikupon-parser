@@ -17,7 +17,7 @@ class Database
 
     public function __construct($database)
     {
-        $connection = new \mysqli("localhost", "root", "root");
+        $connection = new \mysqli("localhost", "root", "secret");
         if ($connection->connect_error) {
             die("Connection failed: " . $connection->connect_error);
         }
@@ -35,7 +35,7 @@ class Database
                 sale_end INT NOT NULL,
                 image_src VARCHAR(200) NOT NULL
                 ) DEFAULT CHARSET=utf8;";
-        $connection->connect("localhost", "root", "root", $database);
+        $connection->connect("localhost", "root", "secret", $database);
         if ($connection->query($query) === TRUE) {
 
         } else {

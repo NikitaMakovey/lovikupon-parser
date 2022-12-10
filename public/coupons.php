@@ -71,7 +71,7 @@ $kernel = new Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
 <body>
 
     <?php
-    $db_name = "simple";
+    $db_name = "lovikupon";
     $db = new Database($db_name);
     if (isset($_POST['SORT']) && $_POST['SORT'] == 1) {
         $query = "SELECT * FROM " . $db->getDatabaseName() . " ORDER BY `sale_end` ASC";
